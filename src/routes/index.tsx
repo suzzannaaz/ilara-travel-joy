@@ -64,7 +64,7 @@ function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
-      <div className="mx-auto grid h-[72px] max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto grid h-[72px] max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 lg:flex lg:justify-between lg:px-12">
         <Brand />
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
           {navItems.map((item) => <a key={item.label} href={item.href} className="text-sm font-semibold text-foreground/75 transition-colors hover:text-primary">{item.label}</a>)}
