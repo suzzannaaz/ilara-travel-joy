@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep verified business contact details in one frontend configuration module; this avoids accidentally publishing invented phone or WhatsApp numbers.
+- Keep the enquiry form frontend-only until a real delivery service is connected; a local preview confirmation must never imply a message was sent.
