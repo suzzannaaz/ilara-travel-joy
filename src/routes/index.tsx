@@ -94,7 +94,7 @@ function SectionHeading({ kicker, title, copy }: { kicker: string; title: string
 
 function Hero() {
   return <section id="home" className="relative isolate min-h-[620px] overflow-hidden sm:min-h-[650px] lg:min-h-[700px]">
-    <img src={heroImage} alt="Palm-lined Kerala backwaters at sunset with a traditional boat" width={1600} height={1104} fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+    <img src={heroImage} alt="Modern international city skyline with skyscrapers and a distant airplane at golden hour" width={1600} height={1104} fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
     <div className="hero-shade absolute inset-0 -z-10" />
     <div className="mx-auto flex min-h-[620px] max-w-7xl flex-col justify-end px-5 pb-17 pt-20 sm:min-h-[650px] sm:px-8 sm:pb-22 lg:min-h-[700px] lg:justify-center lg:px-12 lg:pt-25">
       <div className="max-w-[720px] text-primary-foreground">
@@ -148,7 +148,7 @@ function WhyChooseUs() {
 function About() {
   return <section id="about" className="bg-background py-20 sm:py-25 lg:py-30">
     <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12">
-      <div className="relative"><img src={aboutImage} alt="Palm-lined coastline and calm Arabian Sea in Kerala" width={1104} height={1312} loading="lazy" className="aspect-[1.1] w-full rounded-lg object-cover sm:aspect-[1.24] lg:aspect-[0.94]" /><div className="absolute bottom-0 left-0 bg-deep px-5 py-4 text-deep-foreground"><span className="text-xs font-bold uppercase tracking-[0.16em]">Rooted in Kasaragod</span><p className="mt-1 text-sm text-deep-foreground/75">Here for the journey ahead.</p></div></div>
+      <div className="relative"><img src={aboutImage} alt="Two people in a friendly travel consultation over coffee, with a map and travel documents on the table" width={1104} height={1312} loading="lazy" className="aspect-[1.1] w-full rounded-lg object-cover sm:aspect-[1.24] lg:aspect-[0.94]" /><div className="absolute bottom-0 left-0 bg-deep px-5 py-4 text-deep-foreground"><span className="text-xs font-bold uppercase tracking-[0.16em]">Rooted in Kasaragod</span><p className="mt-1 text-sm text-deep-foreground/75">Here for the journey ahead.</p></div></div>
       <div><SectionHeading kicker="About us" title="Travel support, with a personal touch." /><p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">ILARA TRAVERS is a travel service company based in Kasaragod, Kerala. We help customers arrange flights, train tickets, hotels, visas, and chauffeur services.</p><p className="mt-4 max-w-lg text-base leading-8 text-muted-foreground">Whether you are planning a short trip or a longer journey, we are here to help you bring the details together.</p><Button asChild size="site" className="mt-8"><a href="#enquiry">Talk to Us <ArrowRight aria-hidden="true" /></a></Button></div>
     </div>
   </section>;
