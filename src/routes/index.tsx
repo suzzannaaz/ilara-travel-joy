@@ -7,8 +7,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contact, whatsappUrl } from "@/lib/contact";
+import logo from "@/assets/logo.jpeg";
 import heroImage from "@/assets/kerala-backwaters-hero.jpg";
-import aboutImage from "@/assets/kerala-coast-about.jpg";
+import aboutImage from "@/assets/Sunset Stroll Overlooking the Old Town.png";
 
 const title = "ILARA TRAVERS | Travel Services in Kasaragod, Kerala";
 const description = "ILARA TRAVERS provides flight booking, train ticket booking, hotel booking, visa services and chauffeur services in Kasaragod, Kerala.";
@@ -53,10 +54,21 @@ const navItems = [
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
-    <a href="#home" aria-label="ILARA TRAVERS, back to top" className="inline-flex shrink-0 flex-col leading-none">
-      <span className={`font-display text-[18px] font-extrabold tracking-normal sm:text-[20px] ${inverse ? "text-deep-foreground" : "text-primary"}`}>ILARA <span className="font-medium">TRAVERS</span></span>
-      <span className={`mt-1 text-[9px] font-semibold uppercase tracking-[0.21em] ${inverse ? "text-deep-foreground/60" : "text-muted-foreground"}`}>Kasaragod · Kerala</span>
-    </a>
+   <a
+  href="#home"
+  aria-label="ILARA TRAVERS, back to top"
+  className="flex h-20 w-[210px] shrink-0 items-center justify-start overflow-hidden"
+>
+  <img
+    src={logo}
+    alt="ILARA TRAVERS"
+    className="block h-16 w-auto object-contain object-left"
+  />
+</a>
+    // <a href="#home" aria-label="ILARA TRAVERS, back to top" className="inline-flex shrink-0 flex-col leading-none">
+    //   <span className={`font-display text-[18px] font-extrabold tracking-normal sm:text-[20px] ${inverse ? "text-deep-foreground" : "text-primary"}`}>ILARA <span className="font-medium">TRAVERS</span></span>
+    //   <span className={`mt-1 text-[9px] font-semibold uppercase tracking-[0.21em] ${inverse ? "text-deep-foreground/60" : "text-muted-foreground"}`}>Kasaragod · Kerala</span>
+    // </a>
   );
 }
 
@@ -146,13 +158,50 @@ function WhyChooseUs() {
 }
 
 function About() {
-  return <section id="about" className="bg-background py-20 sm:py-25 lg:py-30">
-    <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12">
-      <div className="relative"><img src={aboutImage} alt="Happy couple walking together along a charming historic street abroad at golden hour, enjoying the journey" width={1104} height={1312} loading="lazy" className="aspect-[1.1] w-full rounded-lg object-cover sm:aspect-[1.24] lg:aspect-[0.94]" /><div className="absolute bottom-0 left-0 bg-deep px-5 py-4 text-deep-foreground"><span className="text-xs font-bold uppercase tracking-[0.16em]">Rooted in Kasaragod</span><p className="mt-1 text-sm text-deep-foreground/75">Here for the journey ahead.</p></div></div>
-      <div><SectionHeading kicker="About us" title="Travel support, with a personal touch." /><p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">ILARA TRAVERS is a travel service company based in Kasaragod, Kerala. We help customers arrange flights, train tickets, hotels, visas, and chauffeur services.</p><p className="mt-4 max-w-lg text-base leading-8 text-muted-foreground">Whether you are planning a short trip or a longer journey, we are here to help you bring the details together.</p><Button asChild size="site" className="mt-8"><a href="#enquiry">Talk to Us <ArrowRight aria-hidden="true" /></a></Button></div>
-    </div>
-  </section>;
+    return (
+    <section id="about" className="bg-background py-20 sm:py-25 lg:py-30">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12">
+
+        <div className="relative">
+          <img
+            src={aboutImage}
+            alt="Happy couple walking together along a charming historic street abroad at golden hour, enjoying the journey"
+            width={1104}
+            height={1312}
+            loading="lazy"
+            className="aspect-[1.1] w-full rounded-lg object-cover sm:aspect-[1.24] lg:aspect-[0.94]"
+          />
+        </div>
+
+        <div>
+          <SectionHeading
+            kicker="About us"
+            title="Travel support, with a personal touch."
+          />
+
+          <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">
+            ILARA TRAVERS is a travel service company based in Kasaragod, Kerala.
+            We help customers arrange flights, train tickets, hotels, visas,
+            and chauffeur services.
+          </p>
+
+          <p className="mt-4 max-w-lg text-base leading-8 text-muted-foreground">
+            Whether you are planning a short trip or a longer journey, we are
+            here to help you bring the details together.
+          </p>
+
+          <Button asChild size="site" className="mt-8">
+            <a href="#enquiry">
+              Talk to Us <ArrowRight aria-hidden="true" />
+            </a>
+          </Button>
+        </div>
+
+      </div>
+    </section>
+  );
 }
+
 
 function Enquiry() {
   const [submitted, setSubmitted] = useState(false);
@@ -184,7 +233,7 @@ function Enquiry() {
           <div><label htmlFor="phone" className="mb-2 block text-sm font-semibold">Phone Number <span aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" required placeholder="Your phone number" aria-invalid={!!phoneError} aria-describedby={phoneError ? "phone-error" : undefined} onChange={() => phoneError && setPhoneError("")} className="h-12 w-full rounded-md border border-input bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary/15" />{phoneError && <p id="phone-error" className="mt-2 text-sm text-destructive">{phoneError}</p>}</div>
           <div><label htmlFor="inquiry" className="mb-2 block text-sm font-semibold">Inquiry <span aria-hidden="true">*</span></label><textarea id="inquiry" name="inquiry" required minLength={5} rows={5} placeholder="Tell us about the services you need..." className="w-full resize-y rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary/15" /></div></div>
           <Button type="submit" size="site" className="mt-6 w-full sm:w-auto">Submit Enquiry <ArrowRight aria-hidden="true" /></Button>
-          <p className="mt-4 text-xs leading-5 text-muted-foreground">Preview only — submissions are not delivered yet.</p>
+          {/* <p className="mt-4 text-xs leading-5 text-muted-foreground">Preview only — submissions are not delivered yet.</p> */}
         </form>}
       </div>
     </div>
@@ -210,10 +259,22 @@ function Contact() {
         <div className="border-t border-border py-5"><div className="flex gap-4"><Mail size={20} className="mt-1 shrink-0 text-primary" aria-hidden="true" /><div><h3 className="text-sm font-bold">Email</h3>{contact.email ? <a href={`mailto:${contact.email}`} className="mt-1 inline-block text-sm text-muted-foreground hover:text-primary">{contact.email}</a> : <p className="mt-1 text-sm text-muted-foreground">Email to be added</p>}</div></div></div>
         <div className="border-t border-border py-6"><p className="mb-4 text-sm font-semibold">Prefer a quick conversation?</p><WhatsAppLink /></div>
       </div>
-      <div className="map-pattern relative flex min-h-[315px] items-center justify-center overflow-hidden rounded-lg border border-border sm:min-h-[390px]" role="img" aria-label="Map placeholder for Kasaragod, Kerala, India">
+      <div className="overflow-hidden rounded-lg border border-border">
+  <iframe
+    src="https://www.google.com/maps?q=Ilara+Travers,+VP+Tower,+MG+Rd,+near+Chakkara+Bazaar+Road,+Fort+Road,+Kasaragod,+Kerala+671121&output=embed"
+    width="100%"
+    height="390"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="ILARA TRAVERS location"
+  />
+</div>
+      {/* <div className="map-pattern relative flex min-h-[315px] items-center justify-center overflow-hidden rounded-lg border border-border sm:min-h-[390px]" role="img" aria-label="Map placeholder for Kasaragod, Kerala, India">
         <div className="absolute left-[12%] top-[20%] h-20 w-36 rotate-[-17deg] rounded-full border-[12px] border-background/75 sm:h-26 sm:w-48" /><div className="absolute bottom-[14%] right-[3%] h-40 w-56 rotate-[31deg] rounded-full border-[14px] border-background/70" />
         <div className="relative z-10 flex flex-col items-center rounded-lg border border-border bg-card px-8 py-7 text-center shadow-xl"><span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground"><MapPin size={23} aria-hidden="true" /></span><strong className="font-display text-lg">Kasaragod, Kerala</strong><span className="mt-1 text-sm text-muted-foreground">India</span><span className="mt-4 border-t border-border pt-3 text-xs text-muted-foreground">Exact map location coming soon</span></div>
-      </div>
+      </div> */}
     </div>
   </div></section>;
 }
@@ -230,5 +291,5 @@ function Footer() {
 }
 
 function HomePage() {
-  return <div className="overflow-x-clip"><SiteHeader /><main><Hero /><Services /><WhyChooseUs /><About /><Enquiry /><Contact /></main><Footer /><WhatsAppLink floating /></div>;
+  return <div className="overflow-x-clip"><SiteHeader /><main><Hero /><About /><Services /><WhyChooseUs /><Enquiry /><Contact /></main><Footer /><WhatsAppLink floating /></div>;
 }
