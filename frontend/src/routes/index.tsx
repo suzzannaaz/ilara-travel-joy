@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
-  ArrowDownRight, ArrowRight, Check, Compass, Headphones,
+  ArrowDownRight, ArrowRight, Compass, Headphones,
   Hotel, Mail, MapPin, Menu, MessageCircle, Phone, Plane, ShieldCheck, Ticket,
   UserRound, X, CarFront, FileCheck2,
 } from "lucide-react";
@@ -204,37 +204,66 @@ function About() {
 
 
 function Enquiry() {
-  const [submitted, setSubmitted] = useState(false);
   const [phoneError, setPhoneError] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const form = event.currentTarget;
     const data = new FormData(form);
-    const phone = String(data.get("phone") || "");
+
+    const name = String(data.get("name") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const inquiry = String(data.get("inquiry") || "").trim();
+
     const digits = phone.replace(/\D/g, "");
-    if (!/^\+?[\d\s()-]+$/.test(phone) || digits.length < 10 || digits.length > 15) {
+
+    // Validate phone number
+    if (
+      !/^\+?[\d\s()-]+$/.test(phone) ||
+      digits.length < 10 ||
+      digits.length > 15
+    ) {
       setPhoneError("Enter a valid phone number with 10 to 15 digits.");
       form.querySelector<HTMLInputElement>("#phone")?.focus();
       return;
     }
+
     setPhoneError("");
-    setSubmitted(true);
+
+    // Create the WhatsApp message
+    const message = `Hello ILARA TRAVERS,
+
+I would like to make an enquiry.
+
+Name: ${name}
+Phone: ${phone}
+
+Inquiry:
+${inquiry}
+
+Thank you.`;
+
+    // Open WhatsApp with the enquiry message
+    if (whatsappUrl) {
+      window.open(whatsappUrl + `?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
     form.reset();
   }
 
   return <section id="enquiry" className="bg-deep py-20 text-deep-foreground sm:py-25 lg:py-30">
     <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-12">
       <div><p className="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-accent"><span className="h-px w-7 bg-accent" />Start a conversation</p><h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-[48px]">Plan Your Next Journey</h2><p className="mt-5 max-w-md text-base leading-8 text-deep-foreground/75">Tell us what you need and our team will get back to you.</p><div className="mt-12 hidden border-t border-deep-foreground/20 pt-5 lg:block"><p className="text-sm text-deep-foreground/65">Flights · Trains · Hotels · Visas · Chauffeur</p></div></div>
-      <div className="rounded-lg bg-card p-6 text-card-foreground sm:p-9 lg:p-10">
-        {submitted ? <div role="status" className="flex min-h-[370px] flex-col items-start justify-center"><span className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-primary"><Check size={27} aria-hidden="true" /></span><h3 className="font-display text-2xl font-bold">Enquiry preview complete</h3><p className="mt-3 max-w-md leading-7 text-muted-foreground">Your details passed validation, but this form is not connected yet. Nothing was sent to ILARA TRAVERS.</p><Button variant="outline" size="site" className="mt-7" onClick={() => setSubmitted(false)}>Start another enquiry</Button></div> : <form onSubmit={handleSubmit} noValidate={false}>
+     <div className="rounded-lg bg-card p-6 text-card-foreground sm:p-9 lg:p-10">
+  <form onSubmit={handleSubmit} noValidate={false}>
           <div className="mb-7 flex items-center gap-3 text-sm font-bold text-primary"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary"><MessageCircle size={17} aria-hidden="true" /></span>Tell us about your plans</div>
           <div className="space-y-5"><div><label htmlFor="full-name" className="mb-2 block text-sm font-semibold">Full Name <span aria-hidden="true">*</span></label><input id="full-name" name="name" type="text" autoComplete="name" required minLength={2} placeholder="Your full name" className="h-12 w-full rounded-md border border-input bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary/15" /></div>
           <div><label htmlFor="phone" className="mb-2 block text-sm font-semibold">Phone Number <span aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" required placeholder="Your phone number" aria-invalid={!!phoneError} aria-describedby={phoneError ? "phone-error" : undefined} onChange={() => phoneError && setPhoneError("")} className="h-12 w-full rounded-md border border-input bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary/15" />{phoneError && <p id="phone-error" className="mt-2 text-sm text-destructive">{phoneError}</p>}</div>
           <div><label htmlFor="inquiry" className="mb-2 block text-sm font-semibold">Inquiry <span aria-hidden="true">*</span></label><textarea id="inquiry" name="inquiry" required minLength={5} rows={5} placeholder="Tell us about the services you need..." className="w-full resize-y rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/65 focus:border-primary focus:ring-2 focus:ring-primary/15" /></div></div>
           <Button type="submit" size="site" className="mt-6 w-full sm:w-auto">Submit Enquiry <ArrowRight aria-hidden="true" /></Button>
           {/* <p className="mt-4 text-xs leading-5 text-muted-foreground">Preview only — submissions are not delivered yet.</p> */}
-        </form>}
+        </form>
       </div>
     </div>
   </section>;
