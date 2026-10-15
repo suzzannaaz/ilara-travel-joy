@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contact, whatsappUrl } from "@/lib/contact";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/logo.png";
 import heroImage from "@/assets/kerala-backwaters-hero.jpg";
 import aboutImage from "@/assets/Sunset Stroll Overlooking the Old Town.png";
 
